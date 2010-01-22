@@ -1,0 +1,51 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "jquery/jquery.tablesorter" %>
+  <%= stylesheet_link_tag 'jquery/blue/style' %>
+
+  <script>
+  $(function() {
+    $('table').tablesorter()
+  })
+  </script>
+
+  <style>
+    table td, table th {
+      padding-left: 10px;
+      padding-right: 20px;
+    }
+
+    table td:first-child, table th:first-child {
+      padding-left: 0;
+    }
+
+    ul.navigation {
+      padding: 0;
+    }
+
+    ul.navigation li {
+      display: inline;
+      margin: 0 5px;
+      font-size: 1.5em;
+    }
+  </style>
+<% end %>
+<ul class="navigation">
+  <li><%= @reports.map { |report| link_to report.titleize, admin_report_path(report) }.join("</li> | <li>") %></li>
+</ul>
+
+<h2>Showing <%= h(@report.name) %> report</h2>
+
+<% @report.data.each_pair do |name, values| %>
+  <h3><%= h(name.titleize) %></h3>
+  <table class="tablesorter">
+    <thead>
+      <tr><th><%= values.first.map { |title| h(title) }.join("</th><th>") %></th></tr>
+    </thead>
+
+    <tbody>
+      <% values[1..-1].each do |row| %>
+        <tr class="<%= cycle('odd', 'even') %>"><td><%= row.map { |data| h(data) }.join("</td><td>") %></td></tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

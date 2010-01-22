@@ -1,4 +1,4 @@
-module AdminReporting
+module Admin
   class ReportsController < ApplicationController
     unloadable
 

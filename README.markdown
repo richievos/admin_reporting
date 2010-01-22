@@ -1,5 +1,5 @@
 # Admin Reporting #
-This Rails engine is based on a really interesting article on metrics those running a site should be checking out:  http://www.watchingwebsites.com/archives/lean-analytics-questions-vcs-should-ask-and-youd-better-answer. After reading that I started implementing them on http://reeflines.com. The general concept is you define a report as a structure that looks like so:
+This Rails engine is based on a really interesting article on metrics those running a site should be checking out:  [Lean analytics: Questions VCs should ask (and you’d better answer)](http://www.watchingwebsites.com/archives/lean-analytics-questions-vcs-should-ask-and-youd-better-answer). After reading that I started implementing them on (http://reeflines.com). The general concept is you define a report as a structure that looks like so:
 
     {
       'data set description' => [
@@ -118,6 +118,7 @@ If you somewhere have a :head block in your views, the above code will automatic
 I use this on an app that uses MongoMapper. I put some code in such that it shouldn't require that, but haven't checked it.
 
 Originally created by Richie Vos
-http://github.com/jerryvos
-http://esopp.us
-http://reeflines.com
+*   [@richievos](http://twitter.com/richievos)
+*   [github.com/jerryvos](http://github.com/jerryvos)
+*   [esopp.us](http://esopp.us)
+*   [reeflines.com](http://reeflines.com)

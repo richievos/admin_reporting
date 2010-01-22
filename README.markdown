@@ -21,6 +21,12 @@ This is a rails engine that adds a single _report_ resource in the admin namespa
 
 Right off the bat you're given an "engagement" report (see the article to see what they define that to be) which is available at /admin/reports/engagement.
 
+This report assumes you have some named_scopes on your user model:
+
+    named_scope :active_between, lambda { |start_time, end_time| { :conditions => ["#{table_name}.last_request_at >= ? AND #{table_name}.last_request_at < ?", start_time, end_time] } }
+    named_scope :logged_in_between, lambda { |start_time, end_time| { :conditions => ["#{table_name}.current_login_at >= ? AND #{table_name}.current_login_at < ?", start_time, end_time] } }
+    
+
 ### Adding reports ###
 To add your own report, in config/initializers/reports.rb (or somewhere in your initialization), do the following:
 
@@ -41,6 +47,7 @@ Then to view that report (after restarting your server), go to /admin/reports/lo
 Built in is also a view of signups. I find it useful to see what people who signed up have done, for instance, who has added oauth creds (twitter), who's uploaded an image, ... Here's an example on how to use that:
 
 User.rb
+    named_scope :created_since, lambda { |time| { :conditions => ["#{table_name}.created_at >= ?", time] } }
     named_scope :with_images, :joins => :images, :select => "distinct #{table_name}.*"
     named_scope :with_email, :conditions => 'email is not null'
     named_scope :from_twitter, :conditions => 'oauth_token is not null'

@@ -1,13 +1,25 @@
 module Admin
   class Report
-    include MongoMapper::Document
+    begin
+      include MongoMapper::Document
+
+      key :name, String
+      key :data, Hash
+
+      timestamps!
+    rescue
+      attr_accessor :name, :data
+
+      def data
+        @data ||= {}
+      end
+
+      def save
+        false
+      end
+    end
 
     unloadable
-
-    key :name, String
-    key :data, Hash
-
-    timestamps!
 
     def self.reports
       @reports ||= {}

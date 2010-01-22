@@ -114,6 +114,9 @@ That should give you a nice looking table and sortability using the tablesorter 
 
 If you somewhere have a :head block in your views, the above code will automatically be included into it (ie by default that code is in a content_for :head block).
 
+### Note ###
+I use this on an app that uses MongoMapper. I put some code in such that it shouldn't require that, but haven't checked it.
+
 Originally created by Richie Vos
 http://github.com/jerryvos
 http://esopp.us

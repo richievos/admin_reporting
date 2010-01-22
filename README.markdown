@@ -24,7 +24,7 @@ Right off the bat you're given an "engagement" report (see the article to see wh
 ### Adding reports ###
 To add your own report, in config/initializers/reports.rb (or somewhere in your initialization), do the following:
 
-    AuthlogicReporting.configure do |config|
+    AdminReporting.configure do |config|
       config.reports do
         report "login_names" do |data|
           # data is the variable where your data set should be stored:
@@ -41,7 +41,7 @@ Then to view that report (after restarting your server), go to /admin/reports/lo
 ### Customizing the controller ###
 The first step after you install this plugin should be customizing your controller, adding in your admin security. To do this, in your same initializer, add a config.controller block:
 
-    AuthlogicReporting.configure do |config|
+    AdminReporting.configure do |config|
       config.reports {}
 
       # acl9 example

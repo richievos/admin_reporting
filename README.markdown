@@ -38,6 +38,20 @@ To add your own report, in config/initializers/reports.rb (or somewhere in your 
 
 Then to view that report (after restarting your server), go to /admin/reports/login_names
 
+Built in is also a view of signups. I find it useful to see what people who signed up have done, for instance, who has added oauth creds (twitter), who's uploaded an image, ... Here's an example on how to use that:
+
+User.rb
+    named_scope :with_images, :joins => :images, :select => "distinct #{table_name}.*"
+    named_scope :with_email, :conditions => 'email is not null'
+    named_scope :from_twitter, :conditions => 'oauth_token is not null'
+
+initializer
+    config.reports do
+      signup_report('from_twitter', 'with_email', 'with_images')
+    end
+
+That gives you /admin/reports/signups.
+
 ### Customizing the controller ###
 The first step after you install this plugin should be customizing your controller, adding in your admin security. To do this, in your same initializer, add a config.controller block:
 
